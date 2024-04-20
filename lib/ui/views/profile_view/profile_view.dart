@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:VMeste/ui/views/settings_view/settings_view.dart';
 import 'package:VMeste/ui/views/settings_view/settings_view_model.dart';
 import 'package:VMeste/ui/widgets/profile_header_widget.dart';
+import 'package:vmeste/ui/navigation/main_navigation.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({Key? key}) : super(key: key);
@@ -16,17 +17,7 @@ class ProfileView extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.more_horiz),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ChangeNotifierProvider(
-                    create: (context) => SettingsViewModel(),
-                    child: const SettingsView(),
-                  ),
-                ),
-              );
-            },
+            onPressed: () => Navigator.pushNamed(context, RouteNames.settings),
           ),
         ],
       ),

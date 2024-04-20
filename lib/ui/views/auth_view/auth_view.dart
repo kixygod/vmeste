@@ -7,6 +7,7 @@ import 'package:VMeste/ui/theme/colors.dart';
 import 'package:VMeste/ui/views/register_view/register_view.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:vmeste/ui/navigation/main_navigation.dart';
 
 class AuthView extends StatefulWidget {
   const AuthView({super.key});
@@ -83,7 +84,7 @@ class AuthViewState extends State<AuthView> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterView()));
+                    Navigator.pushNamed(context, RouteNames.registerView);
                   },
                   child: Text('Регистрация', style: Theme.of(context).textTheme.bodyText1))
             ],
