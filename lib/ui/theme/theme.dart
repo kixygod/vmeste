@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:vmeste/ui/theme/colors.dart';
 
 final ThemeData lightTheme = ThemeData(
+    backgroundColor: AppColors.backgroundColor,
     brightness: Brightness.light,
     primaryColor: AppColors.primaryColor,
     shadowColor: AppColors.primaryColor.withOpacity(0.17),

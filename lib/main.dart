@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [ChangeNotifierProvider(create: (context) => ScreenIndexProvider())],
       child: MaterialApp(
+        theme: lightTheme,
         home: HomeScreen(),
         debugShowCheckedModeBanner: false,
       ),

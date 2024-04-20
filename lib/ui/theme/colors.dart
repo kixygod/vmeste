@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static final Color primaryColor = HexColor('#136FD9');
+  static final Color backgroundColor = HexColor('#FCFCFC');
+  static final Color primaryColor = HexColor('#FCFCFC');
   static final Color dividerColor = HexColor('#E5E5E5');
   static final Color hintColor = HexColor('#9B9DA1');
   static final Color errorColor = HexColor('#D32F2F');

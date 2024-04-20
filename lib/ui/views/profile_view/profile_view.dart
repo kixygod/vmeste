@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:vmeste/ui/theme/colors.dart';
 import 'package:vmeste/ui/views/settings_view/settings_view.dart';
+import 'package:vmeste/ui/views/settings_view/settings_view_model.dart';
 import 'package:vmeste/ui/widgets/profile_header_widget.dart';
 
 class ProfileView extends StatefulWidget {
@@ -38,17 +41,25 @@ class ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
+        backgroundColor: Theme.of(context).backgroundColor,
         actions: [
           IconButton(
             icon: const Icon(Icons.more_vert),
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsView()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ChangeNotifierProvider(
+                      create: (context) => SettingsViewModel(),
+                      child: SettingsView(),
+                    ),
+                  ));
             },
           ),
         ],
       ),
-      backgroundColor: Colors.white,
       body: const SafeArea(
         child: Center(
           child: Stack(
@@ -57,7 +68,7 @@ class ProfileViewState extends State<ProfileView> {
                 children: <Widget>[
                   SizedBox(height: 20),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    padding: EdgeInsets.symmetric(horizontal: 0),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: ProfileHeaderWidget(),

@@ -8,36 +8,54 @@ class ProfileHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const SizedBox(height: 20),
-        DecoratedBox(
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(color: Colors.grey.shade300, width: 2),
-          ),
-          child: Image.asset(avatarImagePath, width: 120, height: 120),
-        ), // Размеры аватарки
-        const SizedBox(height: 10),
-        Text('Name Surname', style: Theme.of(context).textTheme.headline1),
-        const SizedBox(height: 5),
-        Text('Томск', style: Theme.of(context).textTheme.bodyText1),
-        const SizedBox(height: 20),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            _buildCounter(context, 'Мероприятия', '10', () {
-              // Действие при нажатии на счетчик посещенных мероприятий
-              _showEventsModalBottomSheet(context);
-            }),
-            _buildCounter(context, 'Друзья', '100', () {
-              // Действие при нажатии на счетчик друзей
-              _showFriendsModalBottomSheet(context);
-            }),
-          ],
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height * 0.4,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: const BorderRadius.only(
+          bottomLeft: Radius.circular(20),
+          bottomRight: Radius.circular(20),
         ),
-      ],
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            blurRadius: 1,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(height: 20),
+          DecoratedBox(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(color: Colors.grey.shade300, width: 2),
+            ),
+            child: Image.asset(avatarImagePath, width: 120, height: 120),
+          ), // Размеры аватарки
+          const SizedBox(height: 10),
+          Text('Name Surname', style: Theme.of(context).textTheme.headline1),
+          const SizedBox(height: 5),
+          Text('Томск', style: Theme.of(context).textTheme.bodyText1),
+          const SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              _buildCounter(context, 'Мероприятия', '10', () {
+                // Действие при нажатии на счетчик посещенных мероприятий
+                _showEventsModalBottomSheet(context);
+              }),
+              _buildCounter(context, 'Друзья', '100', () {
+                // Действие при нажатии на счетчик друзей
+                _showFriendsModalBottomSheet(context);
+              }),
+            ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -46,15 +64,14 @@ class ProfileHeaderWidget extends StatelessWidget {
       onTap: onPressed,
       child: Column(
         children: [
-          Image.asset(imagePath),
-          const SizedBox(width: 15),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Name Surname'),
-              Text(''),
-            ],
+          Text(
+            count,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 5),
+          Text(
+            title,
+            style: const TextStyle(fontSize: 14),
           ),
         ],
       ),
