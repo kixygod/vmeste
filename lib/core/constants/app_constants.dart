@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vmeste/ui/views/auth_view/auth_view.dart';
-import 'package:vmeste/ui/views/register_view/register_view.dart';
+import 'package:VMeste/ui/views/auth_view/auth_view.dart';
+import 'package:VMeste/ui/views/register_view/register_view.dart';
 
 abstract class RouteNames {
   static const String loaderView = '/';

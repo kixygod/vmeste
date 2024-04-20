@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:vmeste/core/constants/app_constants.dart';
-import 'package:vmeste/providers/screen_index_provider.dart';
-import 'package:vmeste/ui/views/auth_view/auth_view.dart';
-import 'package:vmeste/ui/views/homescreen.dart';
+import 'package:VMeste/core/constants/app_constants.dart';
+import 'package:VMeste/providers/screen_index_provider.dart';
+import 'package:VMeste/ui/views/auth_view/auth_view.dart';
+import 'package:VMeste/ui/views/homescreen.dart';
 import 'package:provider/provider.dart';
-import 'package:vmeste/ui/theme/theme.dart';
+import 'package:VMeste/ui/theme/theme.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future main() async {
   await dotenv.load(fileName: ".env");
-  runApp(const VmesteApp());
+  runApp(const VMesteApp());
 }
 
-class VmesteApp extends StatefulWidget {
-  const VmesteApp({super.key});
+class VMesteApp extends StatefulWidget {
+  const VMesteApp({super.key});
 
   @override
-  State<VmesteApp> createState() => _VmesteAppState();
+  State<VMesteApp> createState() => _VMesteAppState();
 }
 
-class _VmesteAppState extends State<VmesteApp> {
+class _VMesteAppState extends State<VMesteApp> {
   final _router = AppRouter();
   // ignore: unused_field
 

@@ -1,7 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
-import 'package:vmeste/ui/theme/colors.dart';
+import 'package:VMeste/ui/theme/colors.dart';
 
 final ThemeData lightTheme = ThemeData(
     backgroundColor: AppColors.backgroundColor,

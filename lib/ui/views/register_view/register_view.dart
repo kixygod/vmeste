@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
-import 'package:vmeste/ui/theme/colors.dart';
+import 'package:VMeste/ui/theme/colors.dart';
 import 'package:intl/intl.dart';
-import 'package:vmeste/ui/views/auth_view/auth_view.dart';
-import 'package:vmeste/ui/views/homescreen.dart';
+import 'package:VMeste/ui/views/auth_view/auth_view.dart';
+import 'package:VMeste/ui/views/homescreen.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});

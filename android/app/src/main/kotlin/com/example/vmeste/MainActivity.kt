@@ -1,4 +1,4 @@
-package com.example.vmeste
+package com.example.VMeste
 
 import io.flutter.embedding.android.FlutterActivity
 

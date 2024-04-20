@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:vmeste/ui/views/settings_view/settings_view.dart';
-import 'package:vmeste/ui/views/settings_view/settings_view_model.dart';
-import 'package:vmeste/ui/widgets/profile_header_widget.dart';
+import 'package:VMeste/ui/views/settings_view/settings_view.dart';
+import 'package:VMeste/ui/views/settings_view/settings_view_model.dart';
+import 'package:VMeste/ui/widgets/profile_header_widget.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({Key? key}) : super(key: key);

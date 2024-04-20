@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:vmeste/providers/screen_index_provider.dart';
-import 'package:vmeste/ui/views/profile_view/profile_view.dart';
-import 'package:vmeste/ui/views/screen1.dart';
-import 'package:vmeste/ui/views/screen2.dart';
-import 'package:vmeste/ui/views/screen3.dart';
-import 'package:vmeste/ui/theme/colors.dart';
+import 'package:VMeste/providers/screen_index_provider.dart';
+import 'package:VMeste/ui/views/profile_view/profile_view.dart';
+import 'package:VMeste/ui/views/screen1.dart';
+import 'package:VMeste/ui/views/screen2.dart';
+import 'package:VMeste/ui/views/screen3.dart';
+import 'package:VMeste/ui/theme/colors.dart';
 
 class HomeScreen extends StatelessWidget {
   final List<dynamic> screens = [

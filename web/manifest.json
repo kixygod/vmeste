@@ -1,6 +1,6 @@
 {
-    "name": "vmeste",
-    "short_name": "vmeste",
+    "name": "VMeste",
+    "short_name": "VMeste",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vmeste/core/constants/app_constants.dart';
-import 'package:vmeste/ui/widgets/profile_header_widget.dart';
+import 'package:VMeste/core/constants/app_constants.dart';
+import 'package:VMeste/ui/widgets/profile_header_widget.dart';
 
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {

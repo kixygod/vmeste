@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vmeste/ui/theme/colors.dart';
+import 'package:VMeste/ui/theme/colors.dart';
 
 class MainPageView extends StatelessWidget {
   const MainPageView({super.key});
