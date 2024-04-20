@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:vmeste/providers/screen_index_provider.dart';
 import 'package:vmeste/ui/views/homescreen.dart';
 import 'package:provider/provider.dart';
+import 'package:vmeste/ui/theme/theme.dart';
+import 'package:vmeste/ui/views/profile_view/profile_view.dart';
 
 void main() => runApp(const MyApp());
 

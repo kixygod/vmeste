@@ -8,7 +8,7 @@ class AppColors {
   static final Color disabledColor = HexColor('#61000000');
   static final Color shadowColor = primaryColor.withOpacity(0.25);
   static final Color inputFillColor = HexColor('#EDF2F6');
-  static const Color inputColor = Colors.black;
+  static const Color blackColor = Colors.black;
   static final Color borderColor = HexColor('#B5BFE8');
 }
 
