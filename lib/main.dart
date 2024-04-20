@@ -3,9 +3,12 @@ import 'package:vmeste/providers/screen_index_provider.dart';
 import 'package:vmeste/ui/views/homescreen.dart';
 import 'package:provider/provider.dart';
 import 'package:vmeste/ui/theme/theme.dart';
-import 'package:vmeste/ui/views/profile_view/profile_view.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() => runApp(const MyApp());
+Future main() async {
+  await dotenv.load(fileName: ".env");
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
