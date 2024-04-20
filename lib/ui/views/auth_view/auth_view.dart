@@ -119,7 +119,7 @@ class AuthViewState extends State<AuthView> {
       prefs.setString('token', token);
 
       print('Token: $token');
-      Navigator.pushNamed(context, RouteNames.homeView);
+      Navigator.pushReplacementNamed(context, RouteNames.homeView);
     } else {
       print('Ошибка при отправке данных');
       Fluttertoast.showToast(msg: 'Неверные данные');
