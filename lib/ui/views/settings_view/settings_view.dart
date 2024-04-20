@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:vmeste/resources/images.dart';
 import 'settings_view_model.dart';
 
 class SettingsView extends StatelessWidget {
-  const SettingsView({super.key});
+  const SettingsView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +29,7 @@ class SettingsView extends StatelessWidget {
                       shape: BoxShape.circle,
                       border: Border.all(color: Colors.grey.shade300, width: 2),
                     ),
-                    child: Image.asset(Images.person, width: 120, height: 120),
+                    child: Image.asset('assets/images/person.png', width: 120, height: 120),
                   ),
             const SizedBox(height: 16),
             // Кнопка для выбора изображения

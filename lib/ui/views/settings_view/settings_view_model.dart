@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class SettingsViewModel extends ChangeNotifier {
   String firstName = '';
@@ -11,8 +12,23 @@ class SettingsViewModel extends ChangeNotifier {
 
   File? get selectedImage => _selectedImage;
 
-  void selectImage() {
-    // Код для выбора изображения с телефона
+  final ImagePicker _picker = ImagePicker();
+
+  Future<void> selectImage() async {
+    final XFile? pickedFile = await _picker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 50, // Уменьшаем качество изображения для экономии памяти
+    );
+    if (pickedFile != null) {
+      if (pickedFile.path.endsWith('.png')) {
+        _selectedImage = File(pickedFile.path);
+        notifyListeners();
+      } else {
+        // Оповещаем пользователя, что можно выбирать только PNG изображения
+        // Можно использовать showDialog или другой способ оповещения
+        print('Выберите PNG изображение');
+      }
+    }
   }
 
   void saveSettings() {
