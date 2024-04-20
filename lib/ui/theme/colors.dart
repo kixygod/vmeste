@@ -11,6 +11,11 @@ class AppColors {
   static final Color inputFillColor = HexColor('#EDF2F6');
   static const Color blackColor = Colors.black;
   static final Color borderColor = HexColor('#B5BFE8');
+  static final Color purple = HexColor('#CABAFF');
+  static final Color darkPurple = HexColor('#7121EF');
+  static final Color green = HexColor('#D2F634');
+  static final Color white = HexColor('#FFFFFF');
+  static final Color black = HexColor('#000000');
 }
 
 class HexColor extends Color {
