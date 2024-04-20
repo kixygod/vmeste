@@ -1,3 +1,4 @@
+import 'package:VMeste/ui/views/splash_screen/splash_screen_view.dart';
 import 'package:flutter/material.dart';
 import 'package:VMeste/ui/navigation/main_navigation.dart';
 import 'package:VMeste/ui/theme/theme.dart';
@@ -9,7 +10,7 @@ Future main() async {
 }
 
 class VmesteApp extends StatelessWidget {
-  final mainNavigation = MainNavigation();
+  final MainNavigation mainNavigation = MainNavigation();
 
   VmesteApp({super.key});
 
@@ -18,7 +19,7 @@ class VmesteApp extends StatelessWidget {
     return MaterialApp(
       theme: lightTheme,
       debugShowCheckedModeBanner: false,
-      initialRoute: RouteNames.authView,
+      home: SplashScreen(), // Используем SplashScreen в качестве стартового экрана
       routes: mainNavigation.routes,
     );
   }
