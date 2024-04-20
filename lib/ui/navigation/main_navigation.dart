@@ -15,13 +15,10 @@ class MainNavigation {
   Map<String, Widget Function(BuildContext)> routes = {
     RouteNames.homeView: (context) => const HomeView(),
     RouteNames.registerView: (context) => const RegisterView(),
-    RouteNames.settings: (context) => ChangeNotifierProvider(
-        create: (_) => SettingsViewModel(context), child: const SettingsView()),
+    RouteNames.settings: (context) => ChangeNotifierProvider(create: (_) => SettingsViewModel(context), child: const SettingsView()),
   };
 
   Route<dynamic> onGenerateRoute(RouteSettings settings) {
-    return MaterialPageRoute(
-        builder: (context) =>
-            Scaffold(body: Center(child: Text('Error: Route not found'))));
+    return MaterialPageRoute(builder: (context) => const Scaffold(body: Center(child: Text('Error: Route not found'))));
   }
 }

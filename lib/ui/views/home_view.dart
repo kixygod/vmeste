@@ -7,7 +7,7 @@ import 'package:VMeste/ui/views/screen2.dart';
 import 'package:VMeste/ui/views/screen3.dart';
 
 class HomeView extends StatefulWidget {
-  const HomeView({Key? key}) : super(key: key);
+  const HomeView({super.key});
 
   @override
   _AppPageState createState() => _AppPageState();
@@ -26,7 +26,7 @@ class _AppPageState extends State<HomeView> {
           const NewsView(),
           const Screen2(),
           const Screen3(),
-          token != null ? ProfileView() : AuthView(),
+          token != null ? const ProfileView() : const AuthView(),
         ],
       ),
       bottomNavigationBar: NavBar(

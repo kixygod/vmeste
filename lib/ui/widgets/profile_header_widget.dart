@@ -9,8 +9,7 @@ import 'package:http/http.dart' as http;
 class ProfileHeaderWidget extends StatefulWidget {
   final String avatarImagePath;
 
-  const ProfileHeaderWidget({Key? key, this.avatarImagePath = Images.person})
-      : super(key: key);
+  const ProfileHeaderWidget({super.key, this.avatarImagePath = Images.person});
 
   @override
   _ProfileHeaderWidgetState createState() => _ProfileHeaderWidgetState();
