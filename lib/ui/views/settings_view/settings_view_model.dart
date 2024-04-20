@@ -1,8 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 enum Gender {
   male,
@@ -33,6 +36,10 @@ class SettingsViewModel extends ChangeNotifier {
       final isAllowedExtension = allowedExtensions.any((ext) => pickedFile.path.toLowerCase().endsWith(ext));
       if (isAllowedExtension) {
         _selectedImage = File(pickedFile.path);
+        // TODO
+        // if (_selectedImage!.path.isNotEmpty) {
+        //   updateImageOnServer(_selectedImage!);
+        // }
         notifyListeners();
       } else {
         Fluttertoast.showToast(
@@ -64,5 +71,30 @@ class SettingsViewModel extends ChangeNotifier {
   void updateGender(Gender? value) {
     _gender = value;
     notifyListeners();
+  }
+
+  Future<String> getToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token') ?? '';
+    return token;
+  }
+
+  Future<void> updateImageOnServer(File image) async {
+    final token = await getToken();
+    if (token.isNotEmpty || token != '') {
+      final url = Uri.parse('${dotenv.get('API_HOST')}/user/me');
+      Future<void> updateImageOnServer(File image) async {
+        final token = await getToken();
+        if (token.isNotEmpty || token != '') {
+          final url = Uri.parse('${dotenv.get('API_HOST')}/user/me');
+          final request = http.MultipartRequest('PUT', url);
+          request.headers['Authorization'] = 'Bearer $token';
+          request.files.add(await http.MultipartFile.fromPath('image', image.path));
+          final streamedResponse = await request.send();
+          final response = await http.Response.fromStream(streamedResponse);
+          print(response);
+        }
+      }
+    }
   }
 }

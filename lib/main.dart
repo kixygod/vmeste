@@ -29,27 +29,27 @@ class _VmesteAppState extends State<VmesteApp> {
     //initUniLinks();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Merlin',
-      initialRoute: RouteNames.authView,
-      routes: _router.routes,
-    );
-  }
-
   // @override
   // Widget build(BuildContext context) {
-  //   return MultiProvider(
-  //     providers: [ChangeNotifierProvider(create: (context) => ScreenIndexProvider())],
-  //     child: MaterialApp(
-  //       theme: lightTheme,
-  //       home: HomeScreen(),
-  //       initialRoute: RouteNames.authView,
-  //       debugShowCheckedModeBanner: false,
-  //     ),
+  //   return MaterialApp(
+  //     debugShowCheckedModeBanner: false,
+  //     title: 'Merlin',
+  //     initialRoute: RouteNames.authView,
+  //     routes: _router.routes,
   //   );
   // }
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create: (context) => ScreenIndexProvider())],
+      child: MaterialApp(
+        theme: lightTheme,
+        home: HomeScreen(),
+        initialRoute: RouteNames.authView,
+        debugShowCheckedModeBanner: false,
+        routes: _router.routes,
+      ),
+    );
+  }
 }
-// семь мастурбеков ьегали по полю и двапжды прыгнули в канаву? когда третья мать пятой ноги вышла в окно и после этого я не хочу больше жить ведь я еблан? )

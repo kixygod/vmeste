@@ -1,10 +1,85 @@
-import 'package:flutter/material.dart';
-import 'package:vmeste/resources/images.dart';
+import 'dart:convert';
 
-class ProfileHeaderWidget extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:vmeste/resources/images.dart';
+import 'package:http/http.dart' as http;
+
+class ProfileHeaderWidget extends StatefulWidget {
   final String avatarImagePath;
 
-  const ProfileHeaderWidget({super.key, this.avatarImagePath = Images.person});
+  const ProfileHeaderWidget({Key? key, this.avatarImagePath = Images.person}) : super(key: key);
+
+  @override
+  _ProfileHeaderWidgetState createState() => _ProfileHeaderWidgetState();
+}
+
+class _ProfileHeaderWidgetState extends State<ProfileHeaderWidget> {
+  late String _token;
+  Map<String, dynamic>? _userData;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final token = await getToken();
+      if (token.isNotEmpty || token != '') {
+        _token = token;
+        await getUserInfo();
+        print(token);
+      }
+    });
+  }
+
+  Future<String> getToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token') ?? '';
+    return token;
+  }
+
+  Future<void> getUserInfo() async {
+    final url = Uri.parse('${dotenv.get('API_HOST')}/user/me');
+    final response = await http.get(
+      url,
+      headers: {'Authorization': 'Bearer $_token'},
+    );
+    if (response.statusCode == 200) {
+      final jsonResponse = json.decode(response.body);
+      _userData = Map<String, dynamic>.from(jsonResponse);
+      print('${_userData!['name']} ${_userData!['surname']}');
+      setState(() {});
+      print(_userData);
+    } else {
+      print('Error getting user info');
+    }
+  }
+
+  int getFriendsCount(Map? userData) {
+    if (userData != null && userData.containsKey('friends')) {
+      return (userData['friends'] as List?)?.length ?? 0;
+    } else {
+      return 0;
+    }
+  }
+
+  int getAttendedEventsCount(Map? userData) {
+    if (userData != null && userData.containsKey('attendedEvents')) {
+      return (userData['attendedEvents'] as List?)?.length ?? 0;
+    } else {
+      return 0;
+    }
+  }
+
+  String getAvatarLink(Map? userData) {
+    if (userData != null && userData.containsKey('avatar')) {
+      var avatar = userData['avatar'];
+      if (avatar != null && avatar is String && avatar.isNotEmpty) {
+        return avatar;
+      }
+    }
+    return Images.person;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,21 +108,25 @@ class ProfileHeaderWidget extends StatelessWidget {
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
             ),
-            child: Image.asset(avatarImagePath, width: 120, height: 120),
+            child: Image.asset(
+              getAvatarLink(_userData),
+              width: 120,
+              height: 120,
+            ),
           ), // Размеры аватарки
           const SizedBox(height: 10),
-          Text('Name Surname', style: Theme.of(context).textTheme.headline1),
+          Text(_userData != null ? '${_userData!['name']} ${_userData!['surname']}' : 'Имя Фамилия', style: Theme.of(context).textTheme.headline1),
           const SizedBox(height: 5),
-          Text('Томск', style: Theme.of(context).textTheme.bodyText1),
+          Text(_userData != null && _userData!['town'] != '' ? '${_userData!['town']}' : 'Томск', style: Theme.of(context).textTheme.bodyText1),
           const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              _buildCounter(context, 'Мероприятия', '10', () {
+              _buildCounter(context, 'Мероприятия', '${getAttendedEventsCount(_userData)}', () {
                 // Действие при нажатии на счетчик посещенных мероприятий
                 _showEventsModalBottomSheet(context);
               }),
-              _buildCounter(context, 'Друзья', '100', () {
+              _buildCounter(context, 'Друзья', '${getFriendsCount(_userData)}', () {
                 // Действие при нажатии на счетчик друзей
                 _showFriendsModalBottomSheet(context);
               }),

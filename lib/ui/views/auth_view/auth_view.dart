@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:vmeste/ui/theme/colors.dart';
-import 'package:vmeste/ui/views/homescreen.dart';
 import 'package:vmeste/ui/views/register_view/register_view.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthView extends StatefulWidget {
   const AuthView({super.key});
@@ -94,7 +94,6 @@ class AuthViewState extends State<AuthView> {
   }
 
   Future<void> auth(String login, String password) async {
-    // код для отправки данных на сервер
     final Map<String, dynamic> data = {"login": login, "password": password};
     final url = Uri.parse('${dotenv.get('API_HOST')}/user/sign/in');
     final response = await http.post(
@@ -104,13 +103,14 @@ class AuthViewState extends State<AuthView> {
       },
       body: jsonEncode(data),
     );
-    if (response.statusCode == 200) {
-      print('200');
-      // Navigator.pop(context, MaterialPageRoute(builder: (context) => HomeScreen()));
-      Fluttertoast.showToast(msg: 'ПЕРЕХОД НА ЭКРАН ГДЕ ЕСТЬ ВНИЗУ КНОПОЧКИ');
-    } else if (response.statusCode == 201) {
-      print('201');
-      // Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      final responseData = jsonDecode(response.body);
+      final token = responseData['token'] as String;
+
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString('token', token);
+
+      print('Token: $token');
       Fluttertoast.showToast(msg: 'ПЕРЕХОД НА ЭКРАН ГДЕ ЕСТЬ ВНИЗУ КНОПОЧКИ');
     } else {
       print('Ошибка при отправке данных');

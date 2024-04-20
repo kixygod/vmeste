@@ -30,7 +30,7 @@ class ProfileView extends StatelessWidget {
           ),
         ],
       ),
-      body: SafeArea(
+      body: const SafeArea(
         child: Center(
           child: Stack(
             children: [
