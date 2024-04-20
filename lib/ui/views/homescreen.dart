@@ -5,6 +5,7 @@ import 'package:vmeste/ui/views/auth_view/auth_view.dart';
 import 'package:vmeste/ui/views/profile_view/profile_view.dart';
 import 'package:vmeste/ui/views/screen2.dart';
 import 'package:vmeste/ui/views/screen3.dart';
+import 'package:vmeste/ui/theme/colors.dart';
 
 class HomeScreen extends StatelessWidget {
   final List<dynamic> screens = [
@@ -28,10 +29,7 @@ class HomeScreen extends StatelessWidget {
         onTap: (value) => screenindexprovider.updateScreenIndex(value),
         items: [
           BottomNavigationBarItem(
-              label: '',
-              icon: Icon((currentScreenIndex == 0) ? Icons.home : Icons.home_outlined),
-              backgroundColor: Colors.indigo // provide color to any one icon as it will overwrite the whole bottombar's color ( if provided any )
-              ),
+              label: '', icon: Icon((currentScreenIndex == 0) ? Icons.home : Icons.home_outlined), backgroundColor: AppColors.green),
           BottomNavigationBarItem(
             label: '',
             icon: Icon((currentScreenIndex == 1) ? Icons.search : Icons.search_outlined),
