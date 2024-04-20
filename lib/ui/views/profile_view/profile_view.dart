@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vmeste/ui/views/settings_view/settings_view.dart';
 import 'package:vmeste/ui/widgets/profile_header_widget.dart';
 
 class ProfileView extends StatefulWidget {
@@ -67,20 +68,6 @@ class ProfileViewState extends State<ProfileView> {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class SettingsView extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Settings'), // Заголовок AppBar
-      ),
-      body: const Center(
-        child: Text('Settings Page'), // Ваш виджет настроек
       ),
     );
   }
