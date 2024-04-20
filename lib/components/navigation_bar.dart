@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vmeste/ui/theme/colors.dart';
+import 'package:VMeste/ui/theme/colors.dart';
 
 class NavBar extends StatelessWidget {
   final int currentIndex;

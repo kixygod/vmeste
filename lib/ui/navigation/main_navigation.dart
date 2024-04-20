@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:vmeste/ui/views/home_view.dart';
-import 'package:vmeste/ui/views/register_view/register_view.dart';
-import 'package:vmeste/ui/views/settings_view/settings_view.dart';
-import 'package:vmeste/ui/views/settings_view/settings_view_model.dart';
+import 'package:VMeste/ui/views/home_view.dart';
+import 'package:VMeste/ui/views/register_view/register_view.dart';
+import 'package:VMeste/ui/views/settings_view/settings_view.dart';
+import 'package:VMeste/ui/views/settings_view/settings_view_model.dart';
 
 abstract class RouteNames {
   static const String homeView = '/home';
