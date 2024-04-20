@@ -12,6 +12,7 @@ class MapView extends StatelessWidget {
     );
 
     return const Scaffold(
+      backgroundColor: Colors.transparent,
       body: SafeArea(
         child: GoogleMap(
           initialCameraPosition: tomskRegion,

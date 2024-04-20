@@ -119,7 +119,7 @@ class AuthViewState extends State<AuthView> {
       prefs.setString('token', token);
 
       print('Token: $token');
-      Fluttertoast.showToast(msg: 'ПЕРЕХОД НА ЭКРАН ГДЕ ЕСТЬ ВНИЗУ КНОПОЧКИ');
+      Navigator.pushNamed(context, RouteNames.homeView);
     } else {
       print('Ошибка при отправке данных');
       Fluttertoast.showToast(msg: 'Неверные данные');

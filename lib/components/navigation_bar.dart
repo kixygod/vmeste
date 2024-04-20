@@ -5,7 +5,8 @@ class NavBar extends StatelessWidget {
   final int currentIndex;
   final Function(int) onTap;
 
-  const NavBar({Key? key, required this.currentIndex, required this.onTap}) : super(key: key);
+  const NavBar({Key? key, required this.currentIndex, required this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +27,11 @@ class NavBar extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           label: '',
-          icon: Icon(Icons.search),
+          icon: Icon(Icons.map),
         ),
         BottomNavigationBarItem(
           label: '',
-          icon: Icon(Icons.favorite),
+          icon: Icon(Icons.search),
         ),
         BottomNavigationBarItem(
           label: '',

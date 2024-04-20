@@ -18,7 +18,7 @@ class VmesteApp extends StatelessWidget {
     return MaterialApp(
       theme: lightTheme,
       debugShowCheckedModeBanner: false,
-      initialRoute: RouteNames.homeView,
+      initialRoute: RouteNames.authView,
       routes: mainNavigation.routes,
     );
   }
