@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'settings_view_model.dart';
 
@@ -12,7 +13,7 @@ class SettingsView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -32,31 +33,40 @@ class SettingsView extends StatelessWidget {
                     ),
             ),
             const SizedBox(height: 16),
-            // Кнопка для выбора изображения
             ElevatedButton(
               onPressed: viewModel.selectImage,
               child: const Text('Выбрать изображение'),
             ),
             const SizedBox(height: 16),
-            // Поле для ввода имени
-            TextField(
-              decoration: const InputDecoration(labelText: 'Имя'),
-              onChanged: viewModel.updateFirstName,
-            ),
-            const SizedBox(height: 16),
-            // Поле для ввода фамилии
-            TextField(
-              decoration: const InputDecoration(labelText: 'Фамилия'),
-              onChanged: viewModel.updateLastName,
-            ),
-            const SizedBox(height: 16),
-            // Поле для выбора города
             TextField(
               decoration: const InputDecoration(labelText: 'Город'),
               onChanged: viewModel.updateCity,
             ),
             const SizedBox(height: 16),
-            // Кнопка для сохранения изменений
+            TextField(
+              decoration: const InputDecoration(labelText: 'Дата рождения (дд.мм.гггг)'),
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              keyboardType: TextInputType.number,
+              onChanged: viewModel.updateBirthDate,
+            ),
+            const SizedBox(height: 16),
+            // Выпадающее меню для выбора пола
+            DropdownButtonFormField<Gender>(
+              decoration: const InputDecoration(labelText: 'Пол'),
+              value: viewModel.gender,
+              onChanged: viewModel.updateGender,
+              items: const [
+                DropdownMenuItem(
+                  value: Gender.male,
+                  child: Text('Мужской'),
+                ),
+                DropdownMenuItem(
+                  value: Gender.female,
+                  child: Text('Женский'),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: viewModel.saveSettings,
               child: const Text('Сохранить'),
