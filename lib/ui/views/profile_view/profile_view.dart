@@ -46,14 +46,14 @@ class ProfileViewState extends State<ProfileView> {
         backgroundColor: Theme.of(context).backgroundColor,
         actions: [
           IconButton(
-            icon: const Icon(Icons.more_vert),
+            icon: const Icon(Icons.more_horiz),
             onPressed: () {
               Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => ChangeNotifierProvider(
                       create: (context) => SettingsViewModel(),
-                      child: SettingsView(),
+                      child: const SettingsView(),
                     ),
                   ));
             },

@@ -10,7 +10,7 @@ class ProfileHeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.4,
+      constraints: const BoxConstraints(minHeight: 300),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: const BorderRadius.only(
@@ -30,9 +30,8 @@ class ProfileHeaderWidget extends StatelessWidget {
         children: [
           const SizedBox(height: 20),
           DecoratedBox(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
-              border: Border.all(color: Colors.grey.shade300, width: 2),
             ),
             child: Image.asset(avatarImagePath, width: 120, height: 120),
           ), // Размеры аватарки

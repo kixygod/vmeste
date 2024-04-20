@@ -16,21 +16,21 @@ class SettingsView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Предпросмотр изображения или стандартное изображение "person"
-            viewModel.selectedImage != null
-                ? Image.file(
-                    viewModel.selectedImage!,
-                    width: 100,
-                    height: 100,
-                    fit: BoxFit.cover,
-                  )
-                : DecoratedBox(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.grey.shade300, width: 2),
+            SizedBox(
+              width: 120,
+              height: 120,
+              child: viewModel.selectedImage != null
+                  ? CircleAvatar(
+                      radius: 60,
+                      backgroundImage: FileImage(viewModel.selectedImage!),
+                    )
+                  : DecoratedBox(
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                      ),
+                      child: Image.asset('assets/images/person.png', width: 120, height: 120),
                     ),
-                    child: Image.asset('assets/images/person.png', width: 120, height: 120),
-                  ),
+            ),
             const SizedBox(height: 16),
             // Кнопка для выбора изображения
             ElevatedButton(
