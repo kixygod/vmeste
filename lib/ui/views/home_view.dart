@@ -6,7 +6,7 @@ import 'package:VMeste/ui/views/profile_view/profile_view.dart';
 import 'package:VMeste/ui/views/screen3.dart';
 
 class HomeView extends StatefulWidget {
-  const HomeView({Key? key}) : super(key: key);
+  const HomeView({super.key});
 
   @override
   _AppPageState createState() => _AppPageState();

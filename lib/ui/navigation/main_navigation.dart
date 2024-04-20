@@ -18,7 +18,6 @@ class MainNavigation {
     RouteNames.authView: (context) => const AuthView(),
     RouteNames.homeView: (context) => const HomeView(),
     RouteNames.registerView: (context) => const RegisterView(),
-    RouteNames.settings: (context) => ChangeNotifierProvider(
-        create: (_) => SettingsViewModel(context), child: const SettingsView()),
+    RouteNames.settings: (context) => ChangeNotifierProvider(create: (_) => SettingsViewModel(context), child: const SettingsView()),
   };
 }

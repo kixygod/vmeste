@@ -92,7 +92,7 @@ class RegisterViewState extends State<RegisterView> {
                 },
                 child: Text(
                   'Выберите дату рождения: ${selectedDate.day}.${selectedDate.month}.${selectedDate.year}',
-                  style: TextStyle(fontSize: 16),
+                  style: const TextStyle(fontSize: 16),
                 ),
               ),
               const SizedBox(height: 64),

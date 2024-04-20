@@ -11,7 +11,7 @@ Future main() async {
 class VmesteApp extends StatelessWidget {
   final mainNavigation = MainNavigation();
 
-  VmesteApp({Key? key}) : super(key: key);
+  VmesteApp({super.key});
 
   @override
   Widget build(BuildContext context) {
