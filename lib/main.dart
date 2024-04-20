@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vmeste/ui/view/map_view.dart';
+import 'package:vmeste/ui/view/map/map_view.dart';
 
 
 void main() {
