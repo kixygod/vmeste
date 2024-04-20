@@ -4,7 +4,7 @@ import 'package:vmeste/resources/images.dart';
 class ProfileHeaderWidget extends StatelessWidget {
   final String avatarImagePath;
 
-  const ProfileHeaderWidget({Key? key, this.avatarImagePath = Images.person}) : super(key: key);
+  const ProfileHeaderWidget({super.key, this.avatarImagePath = Images.person});
 
   @override
   Widget build(BuildContext context) {

@@ -4,17 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:vmeste/ui/theme/colors.dart';
-import 'package:vmeste/ui/views/register_view/register_view.dart';
-import 'package:vmeste/core/constants/app_constants.dart';
 
-class AuthView extends StatefulWidget {
-  const AuthView({super.key});
+class RegisterView extends StatefulWidget {
+  const RegisterView({super.key});
 
   @override
-  AuthViewState createState() => AuthViewState();
+  RegisterViewState createState() => RegisterViewState();
 }
 
-class AuthViewState extends State<AuthView> {
+class RegisterViewState extends State<RegisterView> {
   String login = '';
   String password = '';
   late TextEditingController loginController;
@@ -37,7 +35,7 @@ class AuthViewState extends State<AuthView> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Авторизация', style: TextStyle(fontSize: 32, color: AppColors.black)),
+              Text('Регистрация', style: TextStyle(fontSize: 32, color: AppColors.black)),
               const SizedBox(height: 64),
               TextField(
                 controller: loginController,
@@ -56,8 +54,8 @@ class AuthViewState extends State<AuthView> {
                   },
                   child: Text('Войти', style: TextStyle(fontSize: 24, color: AppColors.black))),
               TextButton(
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterView()));
+                  onPressed: () async {
+                    sendLoginPassword(loginController.text, passwordController.text);
                   },
                   child: Text('Регистрация', style: Theme.of(context).textTheme.bodyText1))
             ],
