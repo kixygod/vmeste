@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:VMeste/core/constants/app_constants.dart';
 import 'package:VMeste/providers/screen_index_provider.dart';
-import 'package:VMeste/ui/views/auth_view/auth_view.dart';
 import 'package:VMeste/ui/views/homescreen.dart';
 import 'package:provider/provider.dart';
 import 'package:VMeste/ui/theme/theme.dart';

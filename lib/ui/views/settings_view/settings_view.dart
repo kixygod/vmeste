@@ -59,45 +59,19 @@ class SettingsView extends StatelessWidget {
                   borderSide: BorderSide(color: AppColors.darkPurple),
                 ),
               ),
-              onChanged: viewModel.updateCity,
+              onChanged: viewModel.updateTown,
             ),
             const SizedBox(height: 20),
             TextField(
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
-                labelText: 'Дата рождения (дд.мм.гггг)',
+                labelText: 'Ссылка на вк или телеграмм',
                 labelStyle: TextStyle(color: AppColors.black),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: AppColors.darkPurple),
                 ),
               ),
-              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-              keyboardType: TextInputType.number,
-              onChanged: viewModel.updateBirthDate,
-            ),
-            const SizedBox(height: 20),
-            // Выпадающее меню для выбора пола
-            DropdownButtonFormField<Gender>(
-              decoration: InputDecoration(
-                border: const OutlineInputBorder(),
-                labelText: 'Пол',
-                labelStyle: TextStyle(color: AppColors.black),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.darkPurple),
-                ),
-              ),
-              value: viewModel.gender,
-              onChanged: viewModel.updateGender,
-              items: const [
-                DropdownMenuItem(
-                  value: Gender.male,
-                  child: Text('Мужской'),
-                ),
-                DropdownMenuItem(
-                  value: Gender.female,
-                  child: Text('Женский'),
-                ),
-              ],
+              onChanged: viewModel.updateContact,
             ),
             const SizedBox(height: 20),
             TextButton(

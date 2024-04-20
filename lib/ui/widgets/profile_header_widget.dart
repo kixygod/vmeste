@@ -104,16 +104,15 @@ class _ProfileHeaderWidgetState extends State<ProfileHeaderWidget> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(height: 20),
-          DecoratedBox(
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-            ),
-            child: Image.asset(
+          ClipOval(
+            child: Image.network(
               getAvatarLink(_userData),
               width: 120,
               height: 120,
+              fit: BoxFit.cover,
             ),
-          ), // Размеры аватарки
+          ),
+          // Размеры аватарки
           const SizedBox(height: 10),
           Text(_userData != null ? '${_userData!['name']} ${_userData!['surname']}' : 'Имя Фамилия', style: Theme.of(context).textTheme.headline1),
           const SizedBox(height: 5),

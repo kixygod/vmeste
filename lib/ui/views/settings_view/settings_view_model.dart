@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -13,16 +14,11 @@ enum Gender {
 }
 
 class SettingsViewModel extends ChangeNotifier {
-  String firstName = '';
-  String lastName = '';
-  String city = '';
-  String birthDate = '';
-  Gender? _gender;
+  String town = '';
+  String contact = '';
   File? _selectedImage;
 
   File? get selectedImage => _selectedImage;
-
-  Gender? get gender => _gender;
 
   final ImagePicker _picker = ImagePicker();
 
@@ -36,10 +32,6 @@ class SettingsViewModel extends ChangeNotifier {
       final isAllowedExtension = allowedExtensions.any((ext) => pickedFile.path.toLowerCase().endsWith(ext));
       if (isAllowedExtension) {
         _selectedImage = File(pickedFile.path);
-        // TODO
-        // if (_selectedImage!.path.isNotEmpty) {
-        //   updateImageOnServer(_selectedImage!);
-        // }
         notifyListeners();
       } else {
         Fluttertoast.showToast(
@@ -56,20 +48,19 @@ class SettingsViewModel extends ChangeNotifier {
   void saveSettings() {
     // Код для отправки данных на сервер
     // Ваш код для отправки имени, фамилии, страны, города и изображения на сервер
+    if (_selectedImage != null) {
+      updateImageOnServer(_selectedImage!);
+    }
+    updateUserContactAndTown(contact, town);
   }
 
-  void updateCity(String value) {
-    city = value;
+  void updateTown(String value) {
+    town = value;
     notifyListeners();
   }
 
-  void updateBirthDate(String value) {
-    birthDate = value;
-    notifyListeners();
-  }
-
-  void updateGender(Gender? value) {
-    _gender = value;
+  void updateContact(String value) {
+    town = value;
     notifyListeners();
   }
 
@@ -79,22 +70,62 @@ class SettingsViewModel extends ChangeNotifier {
     return token;
   }
 
+  String fileToBase64(File file) {
+    List<int> bytes = file.readAsBytesSync();
+    String base64Image = base64Encode(bytes);
+    return base64Image;
+  }
+
   Future<void> updateImageOnServer(File image) async {
     final token = await getToken();
     if (token.isNotEmpty || token != '') {
-      final url = Uri.parse('${dotenv.get('API_HOST')}/user/me');
-      Future<void> updateImageOnServer(File image) async {
-        final token = await getToken();
-        if (token.isNotEmpty || token != '') {
-          final url = Uri.parse('${dotenv.get('API_HOST')}/user/me');
-          final request = http.MultipartRequest('PUT', url);
-          request.headers['Authorization'] = 'Bearer $token';
-          request.files.add(await http.MultipartFile.fromPath('image', image.path));
-          final streamedResponse = await request.send();
-          final response = await http.Response.fromStream(streamedResponse);
-          print(response);
-        }
+      final url = Uri.parse('${dotenv.get('API_HOST')}/user/avatar');
+
+      var request = http.MultipartRequest('PUT', url)
+        ..headers.addAll({
+          'Authorization': 'Bearer $token',
+        });
+
+      request.files.add(await http.MultipartFile.fromPath(
+        'image',
+        image.path,
+      ));
+
+      var streamedResponse = await request.send();
+
+      final response = await http.Response.fromStream(streamedResponse);
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        print('${response.statusCode}');
+        Fluttertoast.showToast(msg: 'Данные сохранены!');
+      } else {
+        print('Ошибка при отправке данных: ${response.statusCode}');
+        Fluttertoast.showToast(msg: 'Ошибка');
       }
+    } else {
+      Fluttertoast.showToast(msg: 'Токен недействителен или отсутствует');
+    }
+  }
+
+  Future<void> updateUserContactAndTown(String contact, String town) async {
+    final token = await getToken();
+    if (token.isNotEmpty) {
+      final Map<String, dynamic> data = {"contact": contact, "town": town};
+
+      final url = Uri.parse('${dotenv.get('API_HOST')}/user');
+      final response = await http.put(
+        url,
+        headers: {'Authorization': 'Bearer $token', 'Content-Type': 'application/json'},
+        body: jsonEncode(data),
+      );
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        Fluttertoast.showToast(msg: 'Данные сохранены!');
+      } else {
+        Fluttertoast.showToast(msg: 'Ошибка при сохранении данных: ${response.statusCode}');
+      }
+    } else {
+      Fluttertoast.showToast(msg: 'Токен недействителен или отсутствует');
     }
   }
 }
