@@ -1,7 +1,10 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:vmeste/ui/theme/colors.dart';
 
 final ThemeData lightTheme = ThemeData(
+    backgroundColor: AppColors.backgroundColor,
     brightness: Brightness.light,
     primaryColor: AppColors.primaryColor,
     shadowColor: AppColors.primaryColor.withOpacity(0.17),
@@ -12,48 +15,18 @@ final ThemeData lightTheme = ThemeData(
     disabledColor: AppColors.disabledColor,
     buttonTheme: buttonTheme,
     textTheme: textTheme,
-    fontFamily: 'Montserrat');
+    fontFamily: 'VelaSans');
 
-final TextTheme textTheme = TextTheme(
-    headline1: const TextStyle(
-      fontFamily: 'Poppins',
-      color: Colors.black,
+const TextTheme textTheme = TextTheme(
+    headline1: TextStyle(
+      fontFamily: 'VelaSans',
+      color: AppColors.blackColor,
       fontWeight: FontWeight.bold,
       fontSize: 24,
     ),
-    headline2: const TextStyle(
-      fontFamily: 'Poppins',
-      color: Colors.black,
-      fontWeight: FontWeight.bold,
-      fontSize: 20,
-    ),
-    headline3: const TextStyle(
-      color: Colors.black,
-      fontWeight: FontWeight.bold,
-      fontSize: 16,
-    ),
-    headline4: const TextStyle(
-      color: Colors.black,
-      fontWeight: FontWeight.bold,
-      fontSize: 14,
-    ),
     bodyText1: TextStyle(
-      color: AppColors.inputFillColor,
+      color: AppColors.blackColor,
       fontSize: 16,
-    ),
-    bodyText2: TextStyle(
-      color: AppColors.hintColor,
-      fontSize: 12,
-    ),
-    button: const TextStyle(
-      color: Colors.white,
-      fontSize: 18,
-      fontWeight: FontWeight.bold,
-    ),
-    labelMedium: TextStyle(
-      color: AppColors.primaryColor,
-      fontSize: 16,
-      fontWeight: FontWeight.bold,
     ));
 
 final ButtonThemeData buttonTheme = ButtonThemeData(

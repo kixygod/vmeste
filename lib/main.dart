@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:vmeste/ui/view/main_page/main_page_view.dart';
+import 'package:vmeste/providers/screen_index_provider.dart';
+import 'package:vmeste/ui/views/homescreen.dart';
+import 'package:provider/provider.dart';
+import 'package:vmeste/ui/theme/theme.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+Future main() async {
+  await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
 
@@ -10,13 +15,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create: (context) => ScreenIndexProvider())],
+      child: MaterialApp(
+        theme: lightTheme,
+        home: HomeScreen(),
+        debugShowCheckedModeBanner: false,
       ),
-      home: const MainPageView(),
     );
   }
 }
