@@ -11,9 +11,9 @@ class MapView extends StatelessWidget {
       zoom: 14,
     );
 
-    return const SafeArea(
-      child: Scaffold(
-        body: GoogleMap(
+    return const Scaffold(
+      body: SafeArea(
+        child: GoogleMap(
           initialCameraPosition: tomskRegion,
         ),
       ),

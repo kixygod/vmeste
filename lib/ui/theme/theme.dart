@@ -37,8 +37,8 @@ final TextTheme textTheme = TextTheme(
       fontWeight: FontWeight.bold,
       fontSize: 14,
     ),
-    bodyText1: const TextStyle(
-      color: AppColors.inputColor,
+    bodyText1: TextStyle(
+      color: AppColors.inputFillColor,
       fontSize: 16,
     ),
     bodyText2: TextStyle(

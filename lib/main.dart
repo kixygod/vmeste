@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vmeste/ui/view/map/map_view.dart';
-
+import 'package:vmeste/ui/view/main_page/main_page_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,9 +16,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MapView(),
+      home: const MainPageView(),
     );
   }
 }
-
-
