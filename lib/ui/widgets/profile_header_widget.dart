@@ -10,7 +10,6 @@ class ProfileHeaderWidget extends StatefulWidget {
 }
 
 class _ProfileHeaderWidgetState extends State<ProfileHeaderWidget> {
-
   @override
   Widget build(BuildContext context) {
     const imagePath = Images.person;
@@ -21,7 +20,7 @@ class _ProfileHeaderWidgetState extends State<ProfileHeaderWidget> {
         children: [
           Image.asset(imagePath),
           const SizedBox(width: 15),
-          Column(
+          const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
