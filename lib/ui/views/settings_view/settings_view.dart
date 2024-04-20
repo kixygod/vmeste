@@ -74,22 +74,36 @@ class SettingsView extends StatelessWidget {
               onChanged: viewModel.updateContact,
             ),
             const SizedBox(height: 20),
-            TextButton(
-              style: TextButton.styleFrom(
-                foregroundColor: Colors.white,
-                backgroundColor: AppColors.darkPurple,
-                padding: const EdgeInsets.all(16.0),
-                minimumSize: Size(MediaQuery.of(context).size.width * 0.8, 0),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-              ),
-              onPressed: viewModel.saveSettings,
-              child: Text(
-                'Сохранить',
-                style: Theme.of(context).textTheme.bodyText1,
-              ),
-            ),
+            viewModel.isLoading
+                ? ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: AppColors.darkPurple,
+                      padding: const EdgeInsets.all(10.0),
+                      minimumSize: Size(MediaQuery.of(context).size.width * 0.8, 0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                    ),
+                    onPressed: null, // Деактивируем кнопку во время загрузки
+                    child: const CircularProgressIndicator(color: Colors.white),
+                  )
+                : ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: AppColors.darkPurple,
+                      padding: const EdgeInsets.all(16.0),
+                      minimumSize: Size(MediaQuery.of(context).size.width * 0.8, 0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                    ),
+                    onPressed: viewModel.saveSettings,
+                    child: Text(
+                      'Сохранить',
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
+                  ),
           ],
         ),
       ),

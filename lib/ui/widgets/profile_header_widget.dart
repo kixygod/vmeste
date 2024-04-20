@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 class ProfileHeaderWidget extends StatefulWidget {
   final String avatarImagePath;
 
-  const ProfileHeaderWidget({Key? key, this.avatarImagePath = Images.person}) : super(key: key);
+  const ProfileHeaderWidget({super.key, this.avatarImagePath = Images.person});
 
   @override
   _ProfileHeaderWidgetState createState() => _ProfileHeaderWidgetState();
@@ -105,12 +105,19 @@ class _ProfileHeaderWidgetState extends State<ProfileHeaderWidget> {
         children: [
           const SizedBox(height: 20),
           ClipOval(
-            child: Image.network(
-              getAvatarLink(_userData),
-              width: 120,
-              height: 120,
-              fit: BoxFit.cover,
-            ),
+            child: _userData != null
+                ? Image.network(
+                    getAvatarLink(_userData),
+                    width: 120,
+                    height: 120,
+                    fit: BoxFit.cover,
+                  )
+                : Image.asset(
+                    Images.person,
+                    width: 120,
+                    height: 120,
+                    fit: BoxFit.cover,
+                  ),
           ),
           // Размеры аватарки
           const SizedBox(height: 10),

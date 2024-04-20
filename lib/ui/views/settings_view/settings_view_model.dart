@@ -16,6 +16,7 @@ enum Gender {
 class SettingsViewModel extends ChangeNotifier {
   String town = '';
   String contact = '';
+  bool isLoading = false;
   File? _selectedImage;
 
   File? get selectedImage => _selectedImage;
@@ -45,13 +46,20 @@ class SettingsViewModel extends ChangeNotifier {
     }
   }
 
-  void saveSettings() {
+  Future<void> saveSettings() async {
     // Код для отправки данных на сервер
     // Ваш код для отправки имени, фамилии, страны, города и изображения на сервер
+    isLoading = true;
+    notifyListeners();
+    // await Future.delayed(const Duration(seconds: 1));
     if (_selectedImage != null) {
-      updateImageOnServer(_selectedImage!);
+      await updateImageOnServer(_selectedImage!);
     }
-    updateUserContactAndTown(contact, town);
+    if (contact.isNotEmpty || town.isNotEmpty) {
+      await updateUserContactAndTown(contact, town);
+    }
+    isLoading = false;
+    notifyListeners();
   }
 
   void updateTown(String value) {
@@ -97,7 +105,7 @@ class SettingsViewModel extends ChangeNotifier {
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         print('${response.statusCode}');
-        Fluttertoast.showToast(msg: 'Данные сохранены!');
+        Fluttertoast.showToast(msg: 'Изображение сохранено');
       } else {
         print('Ошибка при отправке данных: ${response.statusCode}');
         Fluttertoast.showToast(msg: 'Ошибка');
