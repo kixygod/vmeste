@@ -1,8 +1,7 @@
+import 'package:VMeste/ui/theme/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:VMeste/ui/views/settings_view/settings_view.dart';
-import 'package:VMeste/ui/views/settings_view/settings_view_model.dart';
 import 'package:VMeste/ui/widgets/profile_header_widget.dart';
+import 'package:VMeste/ui/navigation/main_navigation.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({Key? key}) : super(key: key);
@@ -12,21 +11,11 @@ class ProfileView extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).backgroundColor,
+        backgroundColor: AppColors.white,
         actions: [
           IconButton(
             icon: const Icon(Icons.more_horiz),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ChangeNotifierProvider(
-                    create: (context) => SettingsViewModel(),
-                    child: const SettingsView(),
-                  ),
-                ),
-              );
-            },
+            onPressed: () => Navigator.pushNamed(context, RouteNames.settings),
           ),
         ],
       ),
@@ -36,7 +25,6 @@ class ProfileView extends StatelessWidget {
             children: [
               Column(
                 children: <Widget>[
-                  SizedBox(height: 20),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 0),
                     child: Align(

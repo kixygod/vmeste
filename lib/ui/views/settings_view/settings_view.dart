@@ -1,3 +1,4 @@
+import 'package:VMeste/resources/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +30,8 @@ class SettingsView extends StatelessWidget {
                       decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                       ),
-                      child: Image.asset('assets/images/person.png', width: 120, height: 120),
+                      child:
+                          Image.asset(Images.person, width: 120, height: 120),
                     ),
             ),
             const SizedBox(height: 20),

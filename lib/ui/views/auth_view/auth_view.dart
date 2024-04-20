@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:VMeste/ui/theme/colors.dart';
-import 'package:VMeste/ui/views/register_view/register_view.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:VMeste/ui/navigation/main_navigation.dart';
 
 class AuthView extends StatefulWidget {
   const AuthView({super.key});
@@ -38,17 +38,20 @@ class AuthViewState extends State<AuthView> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Авторизация', style: TextStyle(fontSize: 32, color: AppColors.black)),
+              Text('Авторизация',
+                  style: TextStyle(fontSize: 32, color: AppColors.black)),
               const SizedBox(height: 64),
               TextField(
                 controller: loginController,
-                decoration: const InputDecoration(border: OutlineInputBorder(), labelText: 'Логин'),
+                decoration: const InputDecoration(
+                    border: OutlineInputBorder(), labelText: 'Логин'),
               ),
               const SizedBox(height: 16),
               TextField(
                 obscureText: true,
                 controller: passwordController,
-                decoration: const InputDecoration(border: OutlineInputBorder(), labelText: 'Пароль'),
+                decoration: const InputDecoration(
+                    border: OutlineInputBorder(), labelText: 'Пароль'),
               ),
               const SizedBox(height: 64),
               TextButton(
@@ -56,7 +59,8 @@ class AuthViewState extends State<AuthView> {
                     foregroundColor: Colors.white,
                     backgroundColor: AppColors.green,
                     padding: const EdgeInsets.all(16.0),
-                    minimumSize: Size(MediaQuery.of(context).size.width * 0.8, 0),
+                    minimumSize:
+                        Size(MediaQuery.of(context).size.width * 0.8, 0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),
@@ -67,25 +71,29 @@ class AuthViewState extends State<AuthView> {
                     } else if (passwordController.text.isEmpty) {
                       Fluttertoast.showToast(msg: 'Заполните поле пароля');
                     } else if (passwordController.text.length < 8) {
-                      Fluttertoast.showToast(msg: 'Минимальная длина пароля 8 символов');
+                      Fluttertoast.showToast(
+                          msg: 'Минимальная длина пароля 8 символов');
                     } else {
                       auth(loginController.text, passwordController.text);
                     }
                   },
-                  child: Text('Войти', style: Theme.of(context).textTheme.bodyText1)),
+                  child: Text('Войти',
+                      style: Theme.of(context).textTheme.bodyText1)),
               TextButton(
                   style: TextButton.styleFrom(
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.all(16.0),
-                    minimumSize: Size(MediaQuery.of(context).size.width * 0.8, 0),
+                    minimumSize:
+                        Size(MediaQuery.of(context).size.width * 0.8, 0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),
                   ),
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterView()));
+                    Navigator.pushNamed(context, RouteNames.registerView);
                   },
-                  child: Text('Регистрация', style: Theme.of(context).textTheme.bodyText1))
+                  child: Text('Регистрация',
+                      style: Theme.of(context).textTheme.bodyText1))
             ],
           ),
         ),

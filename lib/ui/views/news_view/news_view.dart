@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:VMeste/ui/theme/colors.dart';
 
-class MainPageView extends StatelessWidget {
-  const MainPageView({super.key});
+class NewsView extends StatelessWidget {
+  const NewsView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +58,9 @@ class MainPageView extends StatelessWidget {
                             "ПОПУЛЯРНОЕ",
                             style: TextStyle(fontSize: 24),
                           ),
-                          TextButton(onPressed: () {}, child: const Text('Смотреть все'))
+                          TextButton(
+                              onPressed: () {},
+                              child: const Text('Смотреть все'))
                         ],
                       ),
                       SizedBox(
@@ -72,24 +74,34 @@ class MainPageView extends StatelessWidget {
                               child: Card(
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.0),
-                                  side: const BorderSide(color: Colors.black, width: 1.0),
+                                  side: const BorderSide(
+                                      color: Colors.black, width: 1.0),
                                 ),
                                 color: Colors.white,
                                 child: Column(
                                   children: [
-                                    const SizedBox(height: 100, child: Text('Картинка')),
+                                    const SizedBox(
+                                        height: 100, child: Text('Картинка')),
                                     const Divider(
                                       color: Colors.black,
                                       thickness: 1.0,
                                       height: 20.0,
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
+                                      padding: const EdgeInsets.only(
+                                          top: 10,
+                                          left: 20,
+                                          right: 20,
+                                          bottom: 10),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           Column(
-                                            children: [Text(eventTitle), Text(date)],
+                                            children: [
+                                              Text(eventTitle),
+                                              Text(date)
+                                            ],
                                           ),
                                           Column(
                                             children: [Text('От $price руб.')],
@@ -112,7 +124,9 @@ class MainPageView extends StatelessWidget {
                             "ВАМ ПОНРАВИТСЯ",
                             style: TextStyle(fontSize: 24),
                           ),
-                          TextButton(onPressed: () {}, child: const Text('Смотреть все'))
+                          TextButton(
+                              onPressed: () {},
+                              child: const Text('Смотреть все'))
                         ],
                       ),
                       SizedBox(
@@ -126,27 +140,39 @@ class MainPageView extends StatelessWidget {
                               child: Card(
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10.0),
-                                    side: const BorderSide(color: Colors.black, width: 1.0),
+                                    side: const BorderSide(
+                                        color: Colors.black, width: 1.0),
                                   ),
                                   color: Colors.white,
                                   child: Column(
                                     children: [
-                                      const SizedBox(height: 100, child: Text('Картинка')),
+                                      const SizedBox(
+                                          height: 100, child: Text('Картинка')),
                                       const Divider(
                                         color: Colors.black,
                                         thickness: 1.0,
                                         height: 20.0,
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 10),
+                                        padding: const EdgeInsets.only(
+                                            top: 10,
+                                            left: 20,
+                                            right: 20,
+                                            bottom: 10),
                                         child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Column(
-                                              children: [Text(eventTitle), Text(date)],
+                                              children: [
+                                                Text(eventTitle),
+                                                Text(date)
+                                              ],
                                             ),
                                             Column(
-                                              children: [Text('От $price руб.')],
+                                              children: [
+                                                Text('От $price руб.')
+                                              ],
                                             )
                                           ],
                                         ),
@@ -169,7 +195,9 @@ class MainPageView extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20),
                             ),
                           ),
-                          child: const Text('Найти людей со схожими итересами', style: TextStyle(fontSize: 14, color: AppColors.blackColor)),
+                          child: const Text('Найти людей со схожими итересами',
+                              style: TextStyle(
+                                  fontSize: 14, color: AppColors.blackColor)),
                         ),
                       )
                     ],

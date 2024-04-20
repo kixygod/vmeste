@@ -23,6 +23,14 @@ class SettingsViewModel extends ChangeNotifier {
 
   final ImagePicker _picker = ImagePicker();
 
+  SettingsViewModel(BuildContext context) {
+    // что тут
+  }
+
+  factory SettingsViewModel.create(BuildContext context) {
+    return SettingsViewModel(context);
+  }
+
   Future<void> selectImage() async {
     final XFile? pickedFile = await _picker.pickImage(
       source: ImageSource.gallery,

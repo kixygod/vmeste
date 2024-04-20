@@ -6,8 +6,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:VMeste/ui/theme/colors.dart';
 import 'package:intl/intl.dart';
-import 'package:VMeste/ui/views/auth_view/auth_view.dart';
-import 'package:VMeste/ui/views/homescreen.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});

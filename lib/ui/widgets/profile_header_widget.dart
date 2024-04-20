@@ -9,7 +9,8 @@ import 'package:http/http.dart' as http;
 class ProfileHeaderWidget extends StatefulWidget {
   final String avatarImagePath;
 
-  const ProfileHeaderWidget({super.key, this.avatarImagePath = Images.person});
+  const ProfileHeaderWidget({Key? key, this.avatarImagePath = Images.person})
+      : super(key: key);
 
   @override
   _ProfileHeaderWidgetState createState() => _ProfileHeaderWidgetState();
@@ -121,18 +122,28 @@ class _ProfileHeaderWidgetState extends State<ProfileHeaderWidget> {
           ),
           // Размеры аватарки
           const SizedBox(height: 10),
-          Text(_userData != null ? '${_userData!['name']} ${_userData!['surname']}' : 'Имя Фамилия', style: Theme.of(context).textTheme.headline1),
+          Text(
+              _userData != null
+                  ? '${_userData!['name']} ${_userData!['surname']}'
+                  : 'Имя Фамилия',
+              style: Theme.of(context).textTheme.headline1),
           const SizedBox(height: 5),
-          Text(_userData != null && _userData!['town'] != '' ? '${_userData!['town']}' : 'Томск', style: Theme.of(context).textTheme.bodyText1),
+          Text(
+              _userData != null && _userData!['town'] != ''
+                  ? '${_userData!['town']}'
+                  : 'Томск',
+              style: Theme.of(context).textTheme.bodyText1),
           const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              _buildCounter(context, 'Мероприятия', '${getAttendedEventsCount(_userData)}', () {
+              _buildCounter(context, 'Мероприятия',
+                  '${getAttendedEventsCount(_userData)}', () {
                 // Действие при нажатии на счетчик посещенных мероприятий
                 _showEventsModalBottomSheet(context);
               }),
-              _buildCounter(context, 'Друзья', '${getFriendsCount(_userData)}', () {
+              _buildCounter(context, 'Друзья', '${getFriendsCount(_userData)}',
+                  () {
                 // Действие при нажатии на счетчик друзей
                 _showFriendsModalBottomSheet(context);
               }),
@@ -143,7 +154,8 @@ class _ProfileHeaderWidgetState extends State<ProfileHeaderWidget> {
     );
   }
 
-  Widget _buildCounter(BuildContext context, String title, String count, VoidCallback onPressed) {
+  Widget _buildCounter(BuildContext context, String title, String count,
+      VoidCallback onPressed) {
     return GestureDetector(
       onTap: onPressed,
       child: Column(
@@ -222,10 +234,12 @@ class _ProfileHeaderWidgetState extends State<ProfileHeaderWidget> {
                   child: ListTile(
                     leading: const CircleAvatar(
                       radius: 30,
-                      backgroundImage: AssetImage(Images.person), // Вставьте изображение профиля друга
+                      backgroundImage: AssetImage(
+                          Images.person), // Вставьте изображение профиля друга
                     ),
                     title: Text('Friend $i'), // Имя друга
-                    subtitle: const Text('Status'), // Статус друга, например, онлайн или оффлайн
+                    subtitle: const Text(
+                        'Status'), // Статус друга, например, онлайн или оффлайн
                     onTap: () {
                       // Действие при нажатии на профиль друга
                     },

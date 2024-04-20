@@ -1,54 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:VMeste/core/constants/app_constants.dart';
-import 'package:VMeste/providers/screen_index_provider.dart';
-import 'package:VMeste/ui/views/homescreen.dart';
-import 'package:provider/provider.dart';
+import 'package:VMeste/ui/navigation/main_navigation.dart';
 import 'package:VMeste/ui/theme/theme.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future main() async {
   await dotenv.load(fileName: ".env");
-  runApp(const VMesteApp());
+  runApp(VmesteApp());
 }
 
-class VMesteApp extends StatefulWidget {
-  const VMesteApp({super.key});
+class VmesteApp extends StatelessWidget {
+  final mainNavigation = MainNavigation();
 
-  @override
-  State<VMesteApp> createState() => _VMesteAppState();
-}
-
-class _VMesteAppState extends State<VMesteApp> {
-  final _router = AppRouter();
-  // ignore: unused_field
-
-  @override
-  void initState() {
-    super.initState();
-    //initUniLinks();
-  }
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   return MaterialApp(
-  //     debugShowCheckedModeBanner: false,
-  //     title: 'Merlin',
-  //     initialRoute: RouteNames.authView,
-  //     routes: _router.routes,
-  //   );
-  // }
+  VmesteApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (context) => ScreenIndexProvider())],
-      child: MaterialApp(
-        theme: lightTheme,
-        home: HomeScreen(),
-        initialRoute: RouteNames.authView,
-        debugShowCheckedModeBanner: false,
-        routes: _router.routes,
-      ),
+    return MaterialApp(
+      theme: lightTheme,
+      debugShowCheckedModeBanner: false,
+      initialRoute: RouteNames.homeView,
+      routes: mainNavigation.routes,
     );
   }
 }
