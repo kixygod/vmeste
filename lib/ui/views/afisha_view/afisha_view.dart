@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:VMeste/ui/theme/colors.dart';
 
-class NewsView extends StatelessWidget {
-  const NewsView({super.key});
+class AfishaView extends StatelessWidget {
+  const AfishaView({super.key});
 
   @override
   Widget build(BuildContext context) {

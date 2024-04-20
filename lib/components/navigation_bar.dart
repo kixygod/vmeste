@@ -31,10 +31,6 @@ class NavBar extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           label: '',
-          icon: Icon(Icons.search),
-        ),
-        BottomNavigationBarItem(
-          label: '',
           icon: Icon(Icons.person),
         ),
       ],
