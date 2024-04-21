@@ -17,17 +17,22 @@ final ThemeData lightTheme = ThemeData(
     textTheme: textTheme,
     fontFamily: 'VelaSans');
 
-const TextTheme textTheme = TextTheme(
-    headline1: TextStyle(
-      fontFamily: 'VelaSans',
-      color: AppColors.blackColor,
-      fontWeight: FontWeight.bold,
-      fontSize: 24,
-    ),
-    bodyText1: TextStyle(
-      color: AppColors.blackColor,
-      fontSize: 16,
-    ));
+TextTheme textTheme = TextTheme(
+  headline1: const TextStyle(
+    fontFamily: 'VelaSans',
+    color: AppColors.blackColor,
+    fontWeight: FontWeight.bold,
+    fontSize: 24,
+  ),
+  bodyText1: const TextStyle(
+    color: AppColors.blackColor,
+    fontSize: 16,
+  ),
+  bodyText2: TextStyle(
+    color: AppColors.darkPurple,
+    fontSize: 12,
+  ),
+);
 
 final ButtonThemeData buttonTheme = ButtonThemeData(
   shape: const StadiumBorder(),
