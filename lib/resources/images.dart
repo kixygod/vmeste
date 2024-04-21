@@ -10,4 +10,5 @@ class Images {
   static const String drygaya = 'assets/images/drygaya.jpg';
   static const String ozero = 'assets/images/ozero.jpg';
   static const String lida = 'assets/images/lida.jpg';
+  static const String friend = 'assets/images/friend.jpg';
 }

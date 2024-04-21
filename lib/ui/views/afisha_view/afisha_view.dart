@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:VMeste/ui/navigation/main_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
@@ -209,19 +210,25 @@ class _AfishaViewState extends State<AfishaView> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        height: 90,
+                        height: 80,
                         width: double.infinity,
-                        child: Image.asset(
-                          event['image'],
-                          fit: BoxFit.cover,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pushReplacementNamed(RouteNames.event);
+                          },
+                          child: Image.asset(
+                            event['image'],
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                       const Divider(
                         color: Colors.black,
                         thickness: 1.0,
+                        height: 20.0,
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
