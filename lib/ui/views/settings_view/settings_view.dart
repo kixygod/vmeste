@@ -98,7 +98,9 @@ class SettingsView extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                     ),
-                    onPressed: viewModel.saveSettings,
+                    onPressed: () {
+                    viewModel.saveSettings(context); // Передаем контекст
+                  },
                     child: Text(
                       'Сохранить',
                       style: Theme.of(context).textTheme.bodyText1,

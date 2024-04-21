@@ -50,47 +50,11 @@ class _ProfileHeaderWidgetState extends State<ProfileHeaderWidget> {
 
   final events = [
     Event(
-      title: 'Концерт классической музыки',
-      date: DateTime(2024, 5, 15),
-      price: 500,
-      image: const AssetImage(Images.rockConcert),
-    ),
-    Event(
       title: 'Хакатон',
       date: DateTime(2024, 5, 20),
       price: 300,
       image: const AssetImage(Images.hackaton),
-    ),
-    Event(
-      title: 'Семинар по маркетингу',
-      date: DateTime(2024, 6, 1),
-      price: 150,
-      image: const AssetImage(Images.rockConcert),
-    ),
-    Event(
-      title: 'Фестиваль уличной еды',
-      date: DateTime(2024, 6, 5),
-      price: 100,
-      image: const AssetImage(Images.rockConcert),
-    ),
-    Event(
-      title: 'Фильм в открытом кинотеатре',
-      date: DateTime(2024, 6, 10),
-      price: 200,
-      image: const AssetImage(Images.rockConcert),
-    ),
-    Event(
-      title: 'Концерт рок-группы',
-      date: DateTime(2024, 6, 15),
-      price: 600,
-      image: const AssetImage(Images.rockConcert),
-    ),
-    Event(
-      title: 'Балетная постановка',
-      date: DateTime(2024, 7, 1),
-      price: 450,
-      image: const AssetImage(Images.rockConcert),
-    ),
+    )
   ];
 
   int _calculateAge(String birthday) {
