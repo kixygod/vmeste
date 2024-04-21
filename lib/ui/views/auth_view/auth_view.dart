@@ -38,20 +38,29 @@ class AuthViewState extends State<AuthView> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Авторизация',
-                  style: TextStyle(fontSize: 32, color: AppColors.black)),
+              Text('Авторизация', style: TextStyle(fontSize: 32, color: AppColors.black)),
               const SizedBox(height: 64),
               TextField(
                 controller: loginController,
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(), labelText: 'Логин'),
+                decoration: InputDecoration(
+                    labelStyle: TextStyle(color: AppColors.black),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: AppColors.darkPurple),
+                    ),
+                    border: const OutlineInputBorder(),
+                    labelText: 'Логин'),
               ),
               const SizedBox(height: 16),
               TextField(
                 obscureText: true,
                 controller: passwordController,
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(), labelText: 'Пароль'),
+                decoration: InputDecoration(
+                    labelStyle: TextStyle(color: AppColors.black),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: AppColors.darkPurple),
+                    ),
+                    border: const OutlineInputBorder(),
+                    labelText: 'Пароль'),
               ),
               const SizedBox(height: 64),
               TextButton(
@@ -59,8 +68,7 @@ class AuthViewState extends State<AuthView> {
                     foregroundColor: Colors.white,
                     backgroundColor: AppColors.green,
                     padding: const EdgeInsets.all(16.0),
-                    minimumSize:
-                        Size(MediaQuery.of(context).size.width * 0.8, 0),
+                    minimumSize: Size(MediaQuery.of(context).size.width * 0.8, 0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),
@@ -71,20 +79,17 @@ class AuthViewState extends State<AuthView> {
                     } else if (passwordController.text.isEmpty) {
                       Fluttertoast.showToast(msg: 'Заполните поле пароля');
                     } else if (passwordController.text.length < 8) {
-                      Fluttertoast.showToast(
-                          msg: 'Минимальная длина пароля 8 символов');
+                      Fluttertoast.showToast(msg: 'Минимальная длина пароля 8 символов');
                     } else {
                       auth(loginController.text, passwordController.text);
                     }
                   },
-                  child: Text('Войти',
-                      style: Theme.of(context).textTheme.bodyText1)),
+                  child: Text('Войти', style: Theme.of(context).textTheme.bodyText1)),
               TextButton(
                   style: TextButton.styleFrom(
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.all(16.0),
-                    minimumSize:
-                        Size(MediaQuery.of(context).size.width * 0.8, 0),
+                    minimumSize: Size(MediaQuery.of(context).size.width * 0.8, 0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),
@@ -92,8 +97,7 @@ class AuthViewState extends State<AuthView> {
                   onPressed: () {
                     Navigator.pushNamed(context, RouteNames.registerView);
                   },
-                  child: Text('Регистрация',
-                      style: Theme.of(context).textTheme.bodyText1))
+                  child: Text('Регистрация', style: Theme.of(context).textTheme.bodyText1))
             ],
           ),
         ),

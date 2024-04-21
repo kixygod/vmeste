@@ -45,23 +45,47 @@ class RegisterViewState extends State<RegisterView> {
               const SizedBox(height: 64),
               TextField(
                 controller: loginController,
-                decoration: const InputDecoration(border: OutlineInputBorder(), labelText: 'Логин'),
+                decoration: InputDecoration(
+                    labelStyle: TextStyle(color: AppColors.black),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: AppColors.darkPurple),
+                    ),
+                    border: const OutlineInputBorder(),
+                    labelText: 'Логин'),
               ),
               const SizedBox(height: 16),
               TextField(
                 obscureText: true,
                 controller: passwordController,
-                decoration: const InputDecoration(border: OutlineInputBorder(), labelText: 'Пароль'),
+                decoration: InputDecoration(
+                    labelStyle: TextStyle(color: AppColors.black),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: AppColors.darkPurple),
+                    ),
+                    border: const OutlineInputBorder(),
+                    labelText: 'Пароль'),
               ),
               const SizedBox(height: 16),
               TextField(
                 controller: nameController,
-                decoration: const InputDecoration(border: OutlineInputBorder(), labelText: 'Имя'),
+                decoration: InputDecoration(
+                    labelStyle: TextStyle(color: AppColors.black),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: AppColors.darkPurple),
+                    ),
+                    border: const OutlineInputBorder(),
+                    labelText: 'Имя'),
               ),
               const SizedBox(height: 16),
               TextField(
                 controller: surnameController,
-                decoration: const InputDecoration(border: OutlineInputBorder(), labelText: 'Фамилия'),
+                decoration: InputDecoration(
+                    labelStyle: TextStyle(color: AppColors.black),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: AppColors.darkPurple),
+                    ),
+                    border: const OutlineInputBorder(),
+                    labelText: 'Фамилия'),
               ),
               const SizedBox(height: 16),
               Row(
