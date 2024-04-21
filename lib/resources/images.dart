@@ -10,5 +10,7 @@ class Images {
   static const String drygaya = 'assets/images/drygaya.jpg';
   static const String ozero = 'assets/images/ozero.jpg';
   static const String lida = 'assets/images/lida.jpg';
-  static const String friend = 'assets/images/friend.jpg';
+  static const String friend = 'assets/images/friend.png';
+  static const String rockConcert = 'assets/images/rock_concert.png';
+  static const String hackaton = 'assets/images/hackaton.png';
 }

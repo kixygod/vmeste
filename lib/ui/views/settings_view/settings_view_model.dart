@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:VMeste/ui/navigation/main_navigation.dart';
+import 'package:VMeste/ui/views/profile_view/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:image_picker/image_picker.dart';
@@ -54,7 +56,7 @@ class SettingsViewModel extends ChangeNotifier {
     }
   }
 
-  Future<void> saveSettings() async {
+  Future<void> saveSettings(BuildContext context) async {
     // Код для отправки данных на сервер
     // Ваш код для отправки имени, фамилии, страны, города и изображения на сервер
     isLoading = true;
@@ -68,6 +70,7 @@ class SettingsViewModel extends ChangeNotifier {
     }
     isLoading = false;
     notifyListeners();
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileView()));
   }
 
   void updateTown(String value) {

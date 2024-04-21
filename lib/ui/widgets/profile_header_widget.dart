@@ -1,7 +1,12 @@
 import 'dart:convert';
 
+import 'package:VMeste/components/event_card.dart';
+import 'package:VMeste/components/user_card.dart';
+import 'package:VMeste/resources/event.dart';
+import 'package:VMeste/resources/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:VMeste/resources/images.dart';
 import 'package:http/http.dart' as http;
@@ -18,6 +23,49 @@ class ProfileHeaderWidget extends StatefulWidget {
 class _ProfileHeaderWidgetState extends State<ProfileHeaderWidget> {
   late String _token;
   Map<String, dynamic>? _userData;
+
+  final List<User> friends = [
+    User(
+      firstName: "Иван",
+      lastName: "Иванов",
+      age: 21,
+      commonTagsCount: 3,
+      avatar: const AssetImage(Images.friend),
+    ),
+    User(
+      firstName: "Мария",
+      lastName: "Смирнова",
+      age: 25,
+      commonTagsCount: 1,
+      avatar: const AssetImage(Images.friend),
+    ),
+    User(
+      firstName: "Алексей",
+      lastName: "Кузнецов",
+      age: 32,
+      commonTagsCount: 5,
+      avatar: const AssetImage(Images.friend),
+    ),
+  ];
+
+  final events = [
+    Event(
+      title: 'Хакатон',
+      date: DateTime(2024, 5, 20),
+      price: 300,
+      image: const AssetImage(Images.hackaton),
+    )
+  ];
+
+  int _calculateAge(String birthday) {
+    final birthDate = DateTime.parse(birthday);
+    final now = DateTime.now();
+    var age = now.year - birthDate.year;
+    if (now.month < birthDate.month || (now.month == birthDate.month && now.day < birthDate.day)) {
+      age--;
+    }
+    return age;
+  }
 
   @override
   void initState() {
@@ -50,6 +98,18 @@ class _ProfileHeaderWidgetState extends State<ProfileHeaderWidget> {
       print('${_userData!['name']} ${_userData!['surname']}');
       setState(() {});
       print(_userData);
+      if (_userData!.containsKey('friends')) {
+        var newFriends = _userData!['friends'] as List<dynamic>;
+        friends.addAll(newFriends.map((friend) {
+          return User(
+            firstName: friend['name'],
+            lastName: friend['surname'],
+            age: _calculateAge(friend['birthday']),
+            commonTagsCount: friend['count'] ?? 0,
+            avatar: AssetImage(Images.friend),
+          );
+        }).toList());
+      }
     } else {
       print('Error getting user info');
     }
@@ -94,7 +154,7 @@ class _ProfileHeaderWidgetState extends State<ProfileHeaderWidget> {
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
+            color: Colors.black.withOpacity(0.25),
             blurRadius: 1,
             offset: const Offset(0, 3),
           ),
@@ -121,30 +181,20 @@ class _ProfileHeaderWidgetState extends State<ProfileHeaderWidget> {
           ),
           // Размеры аватарки
           const SizedBox(height: 10),
-          Text(
-              _userData != null
-                  ? '${_userData!['name']} ${_userData!['surname']}'
-                  : 'Имя Фамилия',
-              style: Theme.of(context).textTheme.headline1),
+          Text(_userData != null ? '${_userData!['name']} ${_userData!['surname']}' : 'Имя Фамилия', style: Theme.of(context).textTheme.headline1),
           const SizedBox(height: 5),
-          Text(
-              _userData != null && _userData!['town'] != ''
-                  ? '${_userData!['town']}'
-                  : 'Томск',
-              style: Theme.of(context).textTheme.bodyText1),
+          Text(_userData != null && _userData!['town'] != '' ? '${_userData!['town']}' : 'Томск', style: Theme.of(context).textTheme.bodyText1),
           const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              _buildCounter(context, 'Мероприятия',
-                  '${getAttendedEventsCount(_userData)}', () {
+              _buildCounter(context, 'Мероприятия', '${getAttendedEventsCount(_userData)}', () {
                 // Действие при нажатии на счетчик посещенных мероприятий
-                _showEventsModalBottomSheet(context);
+                _showEventsModalBottomSheet(context, events);
               }),
-              _buildCounter(context, 'Друзья', '${getFriendsCount(_userData)}',
-                  () {
+              _buildCounter(context, 'Друзья', '${getFriendsCount(_userData)}', () {
                 // Действие при нажатии на счетчик друзей
-                _showFriendsModalBottomSheet(context);
+                _showFriendsModalBottomSheet(context, friends);
               }),
             ],
           ),
@@ -153,8 +203,7 @@ class _ProfileHeaderWidgetState extends State<ProfileHeaderWidget> {
     );
   }
 
-  Widget _buildCounter(BuildContext context, String title, String count,
-      VoidCallback onPressed) {
+  Widget _buildCounter(BuildContext context, String title, String count, VoidCallback onPressed) {
     return GestureDetector(
       onTap: onPressed,
       child: Column(
@@ -173,7 +222,7 @@ class _ProfileHeaderWidgetState extends State<ProfileHeaderWidget> {
     );
   }
 
-  void _showEventsModalBottomSheet(BuildContext context) {
+  void _showEventsModalBottomSheet(BuildContext context, List<Event> events) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -181,32 +230,53 @@ class _ProfileHeaderWidgetState extends State<ProfileHeaderWidget> {
       builder: (BuildContext context) {
         return Container(
           height: MediaQuery.of(context).size.height * 0.8,
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20),
-              topRight: Radius.circular(20),
-            ),
+            borderRadius: BorderRadius.circular(20),
           ),
-          child: ListView(
+          child: Padding(
             padding: const EdgeInsets.all(20),
-            children: [
-              // Здесь вы можете добавить элементы вашего списка мероприятий
-              for (int i = 0; i < 20; i++)
-                Container(
-                  height: 60,
-                  margin: const EdgeInsets.only(bottom: 10),
-                  color: Colors.grey.shade200,
-                  child: Center(child: Text('Event $i')),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Text(
+                    'Мероприятия', // Название секции
+                    style: Theme.of(context).textTheme.headline1,
+                  ),
                 ),
-            ],
+                const SizedBox(height: 20),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: events.length,
+                    itemBuilder: (context, index) {
+                      final event = events[index];
+                      return Padding(
+                        // Обернем в Padding для отступов между элементами
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: EventCard(
+                          title: event.title,
+                          date: event.date,
+                          price: event.price,
+                          image: event.image,
+                          onTap: () {
+                            print('Выбрано событие "${event.title}"');
+                          },
+                          height: 160,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       },
     );
   }
 
-  void _showFriendsModalBottomSheet(BuildContext context) {
+  void _showFriendsModalBottomSheet(BuildContext context, List<User> friends) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -221,30 +291,43 @@ class _ProfileHeaderWidgetState extends State<ProfileHeaderWidget> {
               topRight: Radius.circular(20),
             ),
           ),
-          child: ListView(
+          child: Padding(
             padding: const EdgeInsets.all(20),
-            children: [
-              // Здесь вы можете добавить элементы вашего списка друзей
-              for (int i = 0; i < 20; i++)
-                Container(
-                  height: 80,
-                  margin: const EdgeInsets.only(bottom: 10),
-                  color: Colors.grey.shade200,
-                  child: ListTile(
-                    leading: const CircleAvatar(
-                      radius: 30,
-                      backgroundImage: AssetImage(
-                          Images.person), // Вставьте изображение профиля друга
-                    ),
-                    title: Text('Friend $i'), // Имя друга
-                    subtitle: const Text(
-                        'Status'), // Статус друга, например, онлайн или оффлайн
-                    onTap: () {
-                      // Действие при нажатии на профиль друга
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Text(
+                    'Друзья',
+                    style: Theme.of(context).textTheme.headline1,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: friends.length,
+                    itemBuilder: (context, index) {
+                      final friend = friends[index];
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: UserCard(
+                          firstName: friend.firstName,
+                          lastName: friend.lastName,
+                          age: friend.age,
+                          commonTagsCount: friend.commonTagsCount,
+                          avatar: friend.avatar,
+                          onTap: () {
+                            // Логика перехода на страницу пользователя
+                            print('Перейти к профилю ${friend.firstName} ${friend.lastName}');
+                          },
+                          height: 120,
+                        ),
+                      );
                     },
                   ),
                 ),
-            ],
+              ],
+            ),
           ),
         );
       },

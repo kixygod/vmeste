@@ -32,6 +32,14 @@ class ProfileView extends StatelessWidget {
                       child: ProfileHeaderWidget(),
                     ),
                   ),
+                  SizedBox(height: 20),
+                  Text(
+                    'У вас нет предстоящих мероприятий',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ],
               ),
             ],
